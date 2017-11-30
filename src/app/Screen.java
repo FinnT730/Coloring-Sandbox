@@ -31,9 +31,9 @@ public class Screen extends Component {
 			System.gc();
 		}
 
-		System.out.println(cubes.toString());
+		// System.out.println(cubes.toString());
 
-		// cubes.clear();
+		cubes.clear();
 
 		g.clearRect(0, 0, Display.width, Display.height);
 
@@ -57,21 +57,24 @@ public class Screen extends Component {
 
 		// ArrayList<Cube> cubes = new ArrayList<>();
 
-		for (Cube c : cubes) {
-			c.needUpdate();
+		// for (Cube c : cubes) {
+		//
+		// if (c instanceof Cube) {
+		// int number = new Random().nextInt(99);
+		// if (number == 15) {
+		// c.need = true;
+		// }
+		// }
+		//
+		// // c.needUpdate();
+		//
+		// if(c.needUpdate()) {
+		// c.changeColor(g, Color.RED, c.getX(), c.getY());
+		// }
+		//
+		// }
 
-			// Display dis = new Display();
-			// for (int i = 0; i < dis.width; i += 10) {
-			// for (int o = 0; o < dis.height; o += 10) {
-			// cubes.add(new Cube(g,
-			// new Color(new Random().nextInt(255), new Random().nextInt(255), new
-			// Random().nextInt(255)),
-			// i, o, 0, 0));
-			// }
-			// }
-		}
-
-		if (!Cube.needUpdate()) {
+		if (Cube.needUpdate()) {
 			Display dis = new Display();
 			for (int i = 0; i < dis.width; i += 10) {
 				for (int o = 0; o < dis.height; o += 10) {
@@ -80,6 +83,24 @@ public class Screen extends Component {
 							i, o, 0, 0));
 				}
 			}
+		}
+
+		for (Cube c : cubes) {
+
+			int number = new Random().nextInt(16);
+			if (number == 15) {
+				c.need = false;
+			} else {
+				c.need = true;
+			}
+
+			// c.needUpdate();
+
+			if (c.needUpdate()) {
+				c.changeColor(g, Color.RED, 150, 150);
+				c.changeColor(g, Color.RED, 450, 500);
+			}
+
 		}
 
 		super.paint(g);

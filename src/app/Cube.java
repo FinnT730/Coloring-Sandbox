@@ -48,7 +48,7 @@ public class Cube extends Component {
 
 	}
 
-	static boolean need = false;
+	static boolean need = true;
 
 	Event evt;
 
@@ -68,7 +68,19 @@ public class Cube extends Component {
 
 	// static boolean need = false;
 	public static boolean needUpdate() {
-		return need ? true : false || need ? false : true;
+		return need;
+	}
+
+	public static void changeColor(Graphics g, Color color, int x, int y) {
+
+		// System.out.println(x);
+
+		g.clearRect(x - 10, y - 10, x + 10, y + 10);
+
+		int number = new Random().nextInt(9);
+		g.drawString("" + number, x, y);
+		g.setColor(color);
+		g.create().fillRect(x, y, 10, 10);
 	}
 
 }
