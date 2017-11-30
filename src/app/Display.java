@@ -38,7 +38,7 @@ public class Display extends Applet implements Runnable {
 		add(new Screen(g));
 
 		try {
-			thread.sleep(500);
+			thread.sleep(1000);
 			Screen screen = new Screen(g);
 			screen.update(g);
 
@@ -52,7 +52,7 @@ public class Display extends Applet implements Runnable {
 			e.printStackTrace();
 		}
 
-		repaint(500);
+		repaint(1000);
 
 		super.paint(g);
 	}

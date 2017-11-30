@@ -7,7 +7,6 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Event;
 import java.awt.Graphics;
-import java.awt.event.ComponentListener;
 import java.util.Random;
 
 /**
@@ -27,6 +26,11 @@ public class Cube extends Component {
 
 		int number = new Random().nextInt(9);
 		g.drawString("" + number, x, y);
+
+		// if (needUpdate()) {
+		// repaint();
+		// }
+
 	}
 
 	private static void draw(Graphics g, Color color, int x, int y) {
@@ -44,14 +48,27 @@ public class Cube extends Component {
 
 	}
 
-	@Override
-	public boolean mouseDown(Event evt, int x, int y) {
+	static boolean need = false;
 
-		return super.mouseDown(evt, x, y);
+	Event evt;
+
+	public boolean mouseDown(Graphics g, int x, int y) {
+		if (need) {
+			need = false;
+		}
+
+		if (!need) {
+			need = true;
+		}
+
+		// g.clearRect(x, y, 100, 100);
+
+		return need;
 	}
 
-	private void deleteCube(int x, int y) {
-		getComponentAt(x, y).removeComponentListener((ComponentListener) this);
+	// static boolean need = false;
+	public static boolean needUpdate() {
+		return need ? true : false || need ? false : true;
 	}
 
 }

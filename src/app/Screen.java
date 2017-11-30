@@ -22,8 +22,18 @@ public class Screen extends Component {
 		paint(g);
 	}
 
+	ArrayList<Cube> cubes = new ArrayList<>();
+
 	@Override
 	public void paint(Graphics g) {
+
+		{ // this is Garbage Colection.
+			System.gc();
+		}
+
+		System.out.println(cubes.toString());
+
+		// cubes.clear();
 
 		g.clearRect(0, 0, Display.width, Display.height);
 
@@ -45,24 +55,41 @@ public class Screen extends Component {
 		// }
 		// }
 
-		ArrayList<Cube> cubes = new ArrayList<>();
-		Display dis = new Display();
-		for (int i = 0; i < dis.width; i += 10) {
-			for (int o = 0; o < dis.height; o += 10) {
-				cubes.add(new Cube(g,
-						new Color(new Random().nextInt(255), new Random().nextInt(255), new Random().nextInt(255)), i,
-						o, 0, 0));
+		// ArrayList<Cube> cubes = new ArrayList<>();
+
+		for (Cube c : cubes) {
+			c.needUpdate();
+
+			// Display dis = new Display();
+			// for (int i = 0; i < dis.width; i += 10) {
+			// for (int o = 0; o < dis.height; o += 10) {
+			// cubes.add(new Cube(g,
+			// new Color(new Random().nextInt(255), new Random().nextInt(255), new
+			// Random().nextInt(255)),
+			// i, o, 0, 0));
+			// }
+			// }
+		}
+
+		if (!Cube.needUpdate()) {
+			Display dis = new Display();
+			for (int i = 0; i < dis.width; i += 10) {
+				for (int o = 0; o < dis.height; o += 10) {
+					cubes.add(new Cube(g,
+							new Color(new Random().nextInt(255), new Random().nextInt(255), new Random().nextInt(255)),
+							i, o, 0, 0));
+				}
 			}
 		}
 
 		super.paint(g);
 	}
 
-	@Override
-	public void update(Graphics g) {
-		g.clearRect(0, 0, Display.width, Display.height);
-		super.update(g);
-	}
+	// @Override
+	// public void update(Graphics g) {
+	// g.clearRect(0, 0, Display.width, Display.height);
+	// super.update(g);
+	// }
 
 	@Override
 	protected void processKeyEvent(KeyEvent e) {
