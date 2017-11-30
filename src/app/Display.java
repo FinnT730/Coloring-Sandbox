@@ -2,6 +2,7 @@ package app;
 
 import java.applet.Applet;
 import java.awt.Graphics;
+import java.awt.event.MouseEvent;
 
 public class Display extends Applet implements Runnable {
 
@@ -30,12 +31,14 @@ public class Display extends Applet implements Runnable {
 
 	Graphics g;
 
+	MouseEvent Mevent;
+
 	@Override
 	public void paint(Graphics g) {
 		add(new Screen(g));
 
 		try {
-			thread.sleep(2000);
+			thread.sleep(500);
 			Screen screen = new Screen(g);
 			screen.update(g);
 
@@ -49,21 +52,13 @@ public class Display extends Applet implements Runnable {
 			e.printStackTrace();
 		}
 
-		repaint(7000);
+		repaint(500);
 
 		super.paint(g);
 	}
 
 	@Override
 	public void run() {
-		// try {
-		// thread.sleep(2000);
-		// Screen screen = new Screen(g);
-		// screen.update(g);
-		// } catch (InterruptedException e) {
-		// // TODO Auto-generated catch block
-		// e.printStackTrace();
-		// }
 	}
 
 }
